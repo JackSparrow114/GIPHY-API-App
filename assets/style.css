@@ -1,0 +1,17 @@
+#container {
+    background-color: coral;
+    height: 900px;
+    width: 90%;
+    padding: 1em;
+    margin: 5px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.topic-button {
+    height: 50px;
+    width: 80px;
+    background-color: cadetblue;
+    color: white;
+    border: 0;
+    margin: 5px;
+}
