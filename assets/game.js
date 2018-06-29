@@ -33,6 +33,18 @@ $(document).ready(function(){
             }
         });
     });
+    $(document).on("click",'.gif',function(event){
+        var src = $(this);
+        if(state === 'still'){
+            state = 'moving';
+            var newSrc = src[0].currentSrc.replace('_s.gif','.gif');
+        } else {
+            state = 'still';
+            var newSrc = src[0].currentSrc.replace('.gif','_s.gif');
+        }
+        console.log(newSrc);
+        event.currentTarget.src = newSrc;
+    });
 });
 var topics = ['Tom Cruise','Brad Pitt','George Clooney','Kate Winslet','Maryl Streep','Margot Robbie'];
 var state = 'still';
@@ -61,8 +73,3 @@ function renderRest(){
     inputForm.append(button);
     $("#add-button").append(inputForm);
 }
-
-$('img.gif').on("click",function(event){
-    var src = event.attr("src");
-    console.log(event);
-});
