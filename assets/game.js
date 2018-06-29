@@ -7,9 +7,33 @@ $(document).ready(function(){
         renderButtons();
 
     });
-});
-var topics = ['Tom Cruise','Brad Pitt','George Clooney','Kate Winslate','Maryl Streep','Margaret Robbie'];
 
+    $('.topic-button').on("click",function(event){
+        var search = event.currentTarget.value;
+        console.log('you searched for '+search);
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        search + "&api_key=6OjxLYPJbItWHPJs2M6IfBse82EWljtB&limit=10";
+
+        $.ajax({
+            url : queryURL,
+            method : 'GET'
+        }).then(function(response){
+            var results = response.data;
+            for (var i = 0; i < results.length; i++) {
+                var gifDiv = $("<div class='item'>");
+                var rating = results[i].rating;
+                var p = $("<p>").text("Rating: " + rating);
+                var personImage = $("<img>");
+                personImage.attr("src", results[i].images.fixed_height.url);
+                gifDiv.prepend(p);
+                gifDiv.prepend(personImage);
+                $("#gifs").prepend(gifDiv);
+            }
+        });
+    });
+});
+var topics = ['Tom Cruise','Brad Pitt','George Clooney','Kate Winslate','Maryl Streep','Margot Robbie'];
+var state = 'still';
 function renderButtons(){
     $("#buttons").empty();
     var buttons = $('<div></div>');
