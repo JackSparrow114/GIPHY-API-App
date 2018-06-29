@@ -5,7 +5,7 @@ $(document).ready(function(){
         var newVal = $('#topic').val();
         topics.push(newVal);
         renderButtons();
-
+        console.log(topics);
     });
 
     $('.topic-button').on("click",function(event){
@@ -19,12 +19,14 @@ $(document).ready(function(){
             method : 'GET'
         }).then(function(response){
             var results = response.data;
+            console.log(response);
+            console.log(results);
             for (var i = 0; i < results.length; i++) {
                 var gifDiv = $("<div class='item'>");
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating: " + rating);
-                var personImage = $("<img>");
-                personImage.attr("src", results[i].images.fixed_height.url);
+                var personImage = $("<img class='gif'>");
+                personImage.attr("src", results[i].images.fixed_height_still.url);
                 gifDiv.prepend(p);
                 gifDiv.prepend(personImage);
                 $("#gifs").prepend(gifDiv);
@@ -32,7 +34,7 @@ $(document).ready(function(){
         });
     });
 });
-var topics = ['Tom Cruise','Brad Pitt','George Clooney','Kate Winslate','Maryl Streep','Margot Robbie'];
+var topics = ['Tom Cruise','Brad Pitt','George Clooney','Kate Winslet','Maryl Streep','Margot Robbie'];
 var state = 'still';
 function renderButtons(){
     $("#buttons").empty();
@@ -59,3 +61,8 @@ function renderRest(){
     inputForm.append(button);
     $("#add-button").append(inputForm);
 }
+
+$('img.gif').on("click",function(event){
+    var src = event.attr("src");
+    console.log(event);
+});
