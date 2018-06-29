@@ -9,9 +9,9 @@
 
 .topic-button {
     height: 50px;
-    width: 80px;
+    width: 120px;
     background-color: cadetblue;
     color: white;
     border: 0;
-    margin: 5px;
+    margin: 30px;
 }
