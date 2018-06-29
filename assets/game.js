@@ -11,27 +11,7 @@ $(document).ready(function(){
     $('.topic-button').on("click",function(event){
         var search = event.currentTarget.value;
         console.log('you searched for '+search);
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        search + "&api_key=6OjxLYPJbItWHPJs2M6IfBse82EWljtB&limit=10";
-
-        $.ajax({
-            url : queryURL,
-            method : 'GET'
-        }).then(function(response){
-            var results = response.data;
-            console.log(response);
-            console.log(results);
-            for (var i = 0; i < results.length; i++) {
-                var gifDiv = $("<div class='item'>");
-                var rating = results[i].rating;
-                var p = $("<p>").text("Rating: " + rating);
-                var personImage = $("<img class='gif'>");
-                personImage.attr("src", results[i].images.fixed_height_still.url);
-                gifDiv.prepend(p);
-                gifDiv.prepend(personImage);
-                $("#gifs").prepend(gifDiv);
-            }
-        });
+        fetchGifs(search);
     });
     $(document).on("click",'.gif',function(event){
         var src = $(this);
@@ -72,4 +52,28 @@ function renderRest(){
     inputForm.append(input);
     inputForm.append(button);
     $("#add-button").append(inputForm);
+}
+
+function fetchGifs(search){
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    search + "&api_key=6OjxLYPJbItWHPJs2M6IfBse82EWljtB&limit=10";
+
+    $.ajax({
+        url : queryURL,
+        method : 'GET'
+    }).then(function(response){
+        var results = response.data;
+        console.log(response);
+        console.log(results);
+        for (var i = 0; i < results.length; i++) {
+            var gifDiv = $("<div class='item'>");
+            var rating = results[i].rating;
+            var p = $("<p>").text("Rating: " + rating);
+            var personImage = $("<img class='gif'>");
+            personImage.attr("src", results[i].images.fixed_height_still.url);
+            gifDiv.prepend(p);
+            gifDiv.prepend(personImage);
+            $("#gifs").prepend(gifDiv);
+        }
+    });
 }
