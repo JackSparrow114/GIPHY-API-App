@@ -15,7 +15,7 @@ $(document).ready(function(){
     });
     $(document).on("click",'.gif',function(event){
         var src = $(this);
-        if(state === 'still'){
+        if(src[0].currentSrc.includes('_s.gif')){
             state = 'moving';
             var newSrc = src[0].currentSrc.replace('_s.gif','.gif');
         } else {
