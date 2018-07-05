@@ -8,7 +8,7 @@ $(document).ready(function(){
         console.log(topics);
     });
 
-    $('.topic-button').on("click",function(event){
+    $(document).on("click",'.topic-button',function(event){
         var search = event.currentTarget.value;
         console.log('you searched for '+search);
         fetchGifs(search);
