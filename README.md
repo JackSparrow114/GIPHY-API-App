@@ -2,7 +2,7 @@
 This project is built for the purpose of learning how to use Giphy API and how to use ajax API calls using jQuery in general.<br><br>
 
 Usage<br> 
-https://jacksparrow114.github.io/Word-Guess-Game/
+https://jacksparrow114.github.io/GIPHY-API-App/
 <br>
 Deployment<br> Deployed using Github.
 <br><br>
